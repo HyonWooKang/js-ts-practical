@@ -1,10 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import type { RouteObject } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, type JSX } from "react";
 import RootLayout from "./RootLayout";
 import ErrorBoundary from "./ErrorBoundary";
-
-const Home = lazy(() => import("../pages/Home"));
+// 페이지 추가
+// const Home = lazy(() => import("../pages/Home"));
+import Home from "../pages/Home";
+import Loops from "../pages/Loops";
 
 function withSuspense(element: JSX.Element) {
   return (
@@ -21,6 +23,7 @@ const routes: RouteObject[] = [
     errorElement: <ErrorBoundary />,
     children: [
       { index: true, element: withSuspense(<Home />) },
+      { path: "loops", element: withSuspense(<Loops />) },
       // 404
       {
         path: "*",
